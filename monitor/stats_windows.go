@@ -29,22 +29,8 @@ type endpointTimers struct {
 }
 
 func newStats() *stats {
-	var r syscall.Rusage
-
-	if err := syscall.Getrusage(0, &r); err != nil {
-		return nil
-	}
-
-	return &stats{
-		utime:   r.Utime,
-		stime:   r.Stime,
-		maxRss:  r.Maxrss,
-		inBlock: r.Inblock,
-		ouBlock: r.Oublock,
-		volCtx:  r.Nvcsw,
-		invCtx:  r.Nivcsw,
-		timers:  make(map[string]*endpointTimers),
-	}
+	// return empty stats as I don't care on windows at least its compiling.
+	return &stats{}
 }
 
 func (s *stats) endpoints() []*proto.Endpoint {
