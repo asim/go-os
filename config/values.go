@@ -104,7 +104,7 @@ func (j *jsonValue) StringMap(def map[string]string) map[string]string {
 		return def
 	}
 
-	var res map[string]string
+	var res = make(map[string]string)
 	for k, v := range m {
 		res[k] = fmt.Sprintf("%v", v)
 	}
